@@ -1,0 +1,40 @@
+.bg-login {
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('@/assets/login_register_scene.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.login-panel {
+  width: 335px;
+  height: 485px;
+  background: linear-gradient(#7ccce8 30%, #fff 30%);
+}
+
+.login-panel-logo {
+  height: 120px;
+}
+
+@include md {
+  .login-panel {
+    width: 420px;
+    height: 485px;
+  }
+
+  .login-panel-logo {
+    height: 120px;
+  }
+}
+
+@include lg {
+  .login-panel {
+    width: 420px;
+    height: 485px;
+  }
+
+  .login-panel-logo {
+    height: 120px;
+  }
+}

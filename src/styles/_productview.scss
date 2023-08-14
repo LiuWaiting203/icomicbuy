@@ -1,0 +1,15 @@
+.data-table {
+  background-color: #E1F5FE;
+
+  .v-data-table__th {
+    background-color: #2196F3 !important;
+    color: #fff !important;
+    font-weight: bold;
+  }
+
+  .v-data-table__tbody {
+    .v-data-table__tr {
+      background-color: #E1F5FE !important;
+    }
+  }
+}

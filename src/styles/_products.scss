@@ -1,0 +1,55 @@
+.SlideImg {
+  object-position: 0% 0%;
+}
+
+.text-wsc {
+  white-space: pre;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.text-wrap {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.text-desc {
+  white-space: pre-wrap;
+  // word-break: break-all;
+  word-wrap: break-word;
+  // text-overflow: ellipsis;
+  // overflow: auto;
+}
+
+.tableFix.v-table>.v-table__wrapper>table {
+  table-layout: fixed;
+}
+
+.border-random-products {
+  border: 5px solid #CFD8DC;
+}
+
+.border-table-R {
+  border-right: 1px solid #aaa;
+}
+
+.border-table-B {
+  border-bottom: 1px solid #aaa;
+}
+
+.table-bg-color {
+  background-color: cornflowerblue;
+}
+
+.v-radio-group>.v-input__control>.v-label {
+  justify-content: center;
+}
+
+
+.tableDescFix .v-data-table {
+  white-space: pre;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
