@@ -8,8 +8,19 @@ VAppBar.elevation-1(v-if="$route.path !== '/login' && $route.path !== '/register
     VAppBarNavIcon.text-white(v-if="isMobile" @click="drawer = true")
     template(v-if="!isMobile")
       template(v-for="navItem in navItems" :key="navItem.to")
-        VBtn.v-btn--active-no-bg(variant="text" :prepend-icon="navItem.icon" :to="navItem.to" v-if="navItem.show") {{ navItem.text }}
-          VBadge(color="indigo" location="end" :max="9" :content="cart.toString()" v-if="navItem.to === '/cart'")
+        VBtn.v-btn--active-no-bg(
+          variant="text"
+          :prepend-icon="navItem.icon"
+          :to="navItem.to"
+          v-if="navItem.show"
+          ) {{ navItem.text }}
+          VBadge(
+            color="indigo"
+            location="end"
+            :max="9"
+            :content="cart.toString()"
+            v-if="navItem.to === '/cart'"
+            )
     VBtn(v-if="!isMobile && user.isLogin" prepend-icon="mdi-logout" @click="logout") 登出
 VNavigationDrawer(v-if="isMobile" v-model="drawer" location="right" temporary)
   VList(nav)

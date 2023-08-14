@@ -2,10 +2,10 @@
 VCard.rounded-0(ripple variant="text")
   RouterLink.text-decoration-none(:to="'/products/' + _id")
     VImg.product-img-border(:src="image" cover :aspectRatio="1")
-    VCardTitle.pa-0.text-h6.text-primary.font-weight-black {{ name }}
-  VCardSubtitle.px-0.text-subtitle-1 {{ category }}
-  VCardSubtitle.px-0.text-subtitle-2.text-pink ${{ price }}
-  VCardActions.px-0
+    VCardTitle.pa-0.text-h6.text-primary.font-weight-black(v-if="!hidedetail") {{ name }}
+  VCardSubtitle.px-0.text-subtitle-1(v-if="!hidedetail") {{ category }}
+  VCardSubtitle.px-0.text-subtitle-2.text-pink(v-if="!hidedetail") ${{ price }}
+  VCardActions.px-0(v-if="!hidedetail")
     VBtn(
       color="primary"
     prepend-icon="mdi-cart"
@@ -52,6 +52,10 @@ const props = defineProps({
   sell: {
     type: Boolean,
     default: () => true
+  },
+  hidedetail: {
+    type: Boolean,
+    default: () => false
   }
 })
 

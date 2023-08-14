@@ -1,0 +1,46 @@
+.banner-image {
+  width: 100vw;
+  height: 300px;
+  background-image: url('@/assets/about-us-cover-1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.product-intro {
+  width: 100vw;
+  background-color: #a4ddf0;
+  box-shadow: inset 1px 1px 50px rgba(0, 0, 0, 0.5);
+}
+
+.text-font-size {
+  font-size: 20px;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.hide-img {
+  display: none;
+}
+
+
+@include sm {
+  .text-font-size {
+    font-size: 30px;
+  }
+
+  .hide-img {
+    display: block;
+  }
+}
+
+@include md {
+  .text-font-size {
+    font-size: 32px;
+  }
+
+  .hide-img {
+    display: block;
+  }
+}
