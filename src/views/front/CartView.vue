@@ -3,7 +3,7 @@ div.bg-grey-lighten-3.h-100
   VContainer
     VRow
       VCol(cols="12")
-        h1.text-center.mb-5 商品結帳
+        h1.text-center.text-blue-grey-darken-2.mb-5 商品結帳
         VStepper(:items="['清單資料', '輸入地址', '送出訂單']" :model-value="step" hide-actions)
           template(v-slot:item.1 v-if="cart.length === 0")
             | 沒有商品
@@ -15,7 +15,7 @@ div.bg-grey-lighten-3.h-100
                   VCol(cols="2")
                     VImg(:src="item.product.image" cover min-width="120" width="150" aspect-ratio="1")
                   VCol(cols="10")
-                    div.d-flex.align-center
+                    .d-flex.align-center
                       RouterLink.text-decoration-none(:to="'/products/' + item.product._id")
                         p.text-grey-darken-3.text-h5.font-weight-bold {{ item.product.name }}
                       VHover
@@ -28,18 +28,18 @@ div.bg-grey-lighten-3.h-100
                             @click="updateCart(item.product._id, item.quantity * -1)"
                             size="32"
                             )
-                    div.my-2.d-flex.align-center
+                    .my-2.d-flex.align-center
                       VIcon.me-2(icon="mdi-tag" color="pink" size="14")
                       span.text-subtitle-1.text-pink {{ item.product.price }} NTD
-                    div.my-5.pa-5.bg-grey-lighten-4.w-100
+                    .my-5.pa-5.bg-grey-lighten-4.w-100
                       pre.w-50.text-desc.text-caption {{ item.product.description }}
                     VDivider.my-5
-                    div.d-flex.align-center.justify-end
+                    .d-flex.align-center.justify-end
                       VBtn(color="primary" variant="text" icon="mdi-minus" @click="updateCart(item.product._id, -1)")
                       span.text-subtitle-2 {{ item.quantity }}
                       VBtn(color="primary" variant="text" icon="mdi-plus" @click="updateCart(item.product._id, 1)")
               VDivider.ma-5
-              div.d-flex.justify-end.align-center
+              .d-flex.justify-end.align-center
                 //- p(v-if="i === cart.length - 1") {{ item.quantity * item.product.price }}
                 span(v-if="i === cart.length - 1") 總金額：
                 p.text-pink.text-h4.font-weight-bold(v-if="i === cart.length - 1") ${{ totalAmount }}

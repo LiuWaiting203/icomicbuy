@@ -12,13 +12,18 @@ VContainer
         pre.text-subtitle-2.text-desc {{ product.description }}
     VCol.ps-10(cols="12" md="6")
       p.text-caption.text-indigo.mb-5 類別：{{ product.category }}
-      .d-flex.justify-start.mb-2
+      .d-flex.justify-start.align-center.mb-2
         VAvatar.me-2(size="32")
-          VImg(:src="product.user.avatar")
+          VImg(:src="product.user.avatar" cover min-width="60")
         h3.text-subtitle-1 {{ product.user.name }}
       h1.text-h4.font-weight-black.mb-5.text-grey-darken-3 {{ product.name }}
       .d-flex.align-center
-        VBtn.me-auto(prepend-icon="mdi-heart" variant="outlined" @click="incrementCounter" color="pink") {{ buttonText }}
+        VBtn.me-auto(
+          prepend-icon="mdi-heart"
+          variant="outlined"
+          @click="incrementCounter"
+          :color="isLiked ? 'pink' : 'grey'"
+          ) {{ buttonText }}
         VBtn(icon="mdi-clipboard-text" variant="text" :ripple="false" @click="copyURL")
       VDivider.my-4
       .d-flex
@@ -45,25 +50,26 @@ VContainer
           VExpansionPanelTitle(color="grey-lighten-5") 送貨方式
           VExpansionPanelText 透過宅配送達。除網頁另有特別標示外，均為常溫配送。 <br>
     VDivider.my-5
+  VRow
     VCol(cols="12")
       h2.text-center.text-h6.font-weight-bold.mb-5.bg-blue.text-white.rounded-xl 你可能還喜歡以下這些商品...
     VCol(
-      cols="3"
+      cols="12" md="3"
       v-for="randomProduct in randomProducts" :key="randomProduct._id"
     )
-      RouterLink.text-decoration-none.text-grey-darken-3(:to="'/products/' + randomProduct._id")
-        .d-flex.justify-center.align-center.flex-column
-          VImg.border-random-products(:src="randomProduct.image" :min-width="190" cover aspect-ratio="1")
-          .d-flex.flex-column
-            span.text-left.text-caption.text-blue-lighten-2 類別：{{ randomProduct.category }}
-            span(style="width: 185px;").text-wrap.text-body-1.font-weight-bold {{ randomProduct.name }}
-            .d-flex.align-center
-              VAvatar(size="14")
-                VImg(:src="randomProduct.user.avatar")
-              span.ms-2.text-subtitle-2 {{ randomProduct.user.name }}
-        .d-flex.justify-start.align-center
-          //- VIcon.ms-13(icon="mdi-tag" color="pink" size="14")
-          p.ms-9.text-caption.text-pink ${{ randomProduct.price }} NTD
+      .d-flex.align-center.ms-10
+        RouterLink.text-decoration-none.text-grey-darken-3(:to="'/products/' + randomProduct._id")
+          .d-flex.justify-center.align-center.flex-column
+            VImg.border-random-products(:src="randomProduct.image" :min-width="190" cover aspect-ratio="1")
+            .d-flex.flex-column
+              span.text-left.text-caption.text-blue-lighten-2 類別：{{ randomProduct.category }}
+              span(style="width: 185px;").text-wrap.text-body-1.font-weight-bold {{ randomProduct.name }}
+              .d-flex.align-center
+                VAvatar(size="14")
+                  VImg(:src="randomProduct.user.avatar")
+                span.ms-2.text-subtitle-2 {{ randomProduct.user.name }}
+          .d-flex.justify-start.align-center
+            p.text-caption.text-pink ${{ randomProduct.price }} NTD
 VOverlay.d-flex.justify-center.align-center(:model-value="!product.sell" persistent)
   VContainer
     VRow
@@ -86,25 +92,40 @@ import { useRoute } from 'vue-router'
 import { useSnackbar } from 'vuetify-use-dialog'
 import * as yup from 'yup'
 import { useForm, useField } from 'vee-validate'
-import { api, apiAuth } from '@/plugins/axios'
+import { apiAuth } from '@/plugins/axios'
 import { useUserStore } from '@/store/user'
 // Foooter
 import FooterSection from '@/components/FooterSection.vue'
-// // Components - ProductCard
-// import ProductCard from '@/components/ProductCard.vue'
 
 const route = useRoute()
 const userCart = useUserStore()
 const createSnackbar = useSnackbar()
 const counter = ref(0)
 const showZoom = ref(false)
+const isLiked = ref(false)
 
 const toggleZoom = () => {
   showZoom.value = !showZoom.value
 }
 
-const incrementCounter = () => {
-  counter.value++
+const incrementCounter = async () => {
+  try {
+    const { data } = await apiAuth.patch('/users/likes/' + product.value._id, { likes: !isLiked.value })
+    if (data.result !== null || data.result !== undefined) {
+      counter.value = data.result ? counter.value + 1 : counter.value - 1
+      isLiked.value = data.result
+    }
+  } catch (error) {
+    createSnackbar({
+      text: error.response.data.message,
+      showCloseButton: false,
+      snackbarProps: {
+        timeout: 3000,
+        color: 'error',
+        location: 'bottom'
+      }
+    })
+  }
 }
 
 const buttonText = computed(() => counter.value)
@@ -186,8 +207,8 @@ const randomProducts = ref([]);
 (async () => {
   try {
     const results = await Promise.all([
-      api.get('/products/' + route.params.id),
-      api.get('/products/random')
+      apiAuth.get('/products/' + route.params.id),
+      apiAuth.get('/products/random')
     ])
     product.value._id = results[0].data.result._id
     product.value.name = results[0].data.result.name
@@ -204,6 +225,9 @@ const randomProducts = ref([]);
     randomProducts.value.push(...results[1].data.result)
 
     document.title = '愛買漫 | ' + product.value.name
+
+    counter.value = results[0].data.result.likes || 0
+    isLiked.value = results[0].data.result.liked
   } catch (error) {
     console.log(error)
     createSnackbar({

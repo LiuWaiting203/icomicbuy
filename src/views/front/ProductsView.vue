@@ -30,7 +30,7 @@ VDivider.ma-5
 VContainer
   VRow
     VCol.bg-pink-accent-2.rounded-pill.pa-1.mb-5(cols="12")
-      div.d-flex.align-center
+      .d-flex.align-center
         VIcon.ms-2(:start="true" icon="mdi-book-open-blank-variant" size="x-large" color="yellow")
         text.text-h6.font-weight-bold.ms-2 給喜歡動漫的你
     VCol.px-5(
@@ -39,7 +39,7 @@ VContainer
     )
       ProductCard(v-bind="product")
     VCol.bg-light-blue-accent-2.rounded-pill.pa-1.mb-5(cols="12")
-      div.d-flex.align-center
+      .d-flex.align-center
         VIcon.ms-2(color="pink" icon="mdi-package" size="x-large")
         p.text-h6.font-weight-bold.ms-2.text-white 更多更棒的商品推薦給你
   VRow
@@ -59,7 +59,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
 // Get Data
-import { api } from '@/plugins/axios'
+import { api, apiAuth } from '@/plugins/axios'
 // SnackerBar
 import { useSnackbar } from 'vuetify-use-dialog'
 // Components - ProductCard
@@ -108,7 +108,7 @@ const slidesPerView = computed(() => {
 
 const getData = async () => {
   try {
-    const { data } = await api.get('/products/?category=' + tabs.value)
+    const { data } = await apiAuth.get('/products/?category=' + tabs.value)
     products.value = [...data.result]
   } catch (error) {
     createSnackbar({

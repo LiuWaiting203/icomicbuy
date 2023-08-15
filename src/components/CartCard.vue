@@ -4,7 +4,7 @@ VCard.rounded-0.mb-2.elevation-0.d-flex
     VCol(cols="2")
       VImg(:src="image" cover min-width="120" width="150" aspect-ratio="1")
     VCol(cols="10")
-      div.d-flex.align-center
+      .d-flex.align-center
         RouterLink.text-decoration-none(:to="'/products/' + _id")
           p.text-black.text-h5 {{ name }}
         VHover
@@ -17,13 +17,13 @@ VCard.rounded-0.mb-2.elevation-0.d-flex
               @click="updateCart(_id, quantity * -1)"
               size="32"
               )
-      div.my-2.d-flex.align-center
+      .my-2.d-flex.align-center
         VIcon.me-2(icon="mdi-tag" color="pink" size="14")
         span.text-subtitle-1.text-pink {{ price }} NTD
-      div.my-5.pa-5.bg-grey-lighten-4.w-100
+      .my-5.pa-5.bg-grey-lighten-4.w-100
         pre.w-50.text-desc.text-caption {{ description }}
       VDivider.my-5
-      div.d-flex.align-center.justify-end
+      .d-flex.align-center.justify-end
         VBtn(color="primary" variant="text" icon="mdi-minus" @click="updateCart(_id, -1)")
         span.text-subtitle-2 {{ quantity }}
         VBtn(color="primary" variant="text" icon="mdi-plus" @click="updateCart(_id, 1)")

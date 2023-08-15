@@ -3,8 +3,12 @@ VCard.rounded-0(ripple variant="text")
   RouterLink.text-decoration-none(:to="'/products/' + _id")
     VImg.product-img-border(:src="image" cover :aspectRatio="1")
     VCardTitle.pa-0.text-h6.text-primary.font-weight-black(v-if="!hidedetail") {{ name }}
-  VCardSubtitle.px-0.text-subtitle-1(v-if="!hidedetail") {{ category }}
-  VCardSubtitle.px-0.text-subtitle-2.text-pink(v-if="!hidedetail") ${{ price }}
+  VCardSubtitle.px-0.text-body-1(v-if="!hidedetail") {{ category }}
+  VCardSubtitle.px-0.d-flex(v-if="!hidedetail")
+    p.me-auto.text-pink.text-subtitle-2 ${{ price }}
+    .d-flex.justify-center.align-center
+      VIcon(icon="mdi-heart" color="pink" size="14")
+      p.ms-2.text-subtitle-2.text-pink {{ likes }}
   VCardActions.px-0(v-if="!hidedetail")
     VBtn(
       color="primary"
@@ -56,6 +60,10 @@ const props = defineProps({
   hidedetail: {
     type: Boolean,
     default: () => false
+  },
+  likes: {
+    type: Number,
+    default: () => 0
   }
 })
 

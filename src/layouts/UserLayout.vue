@@ -7,14 +7,14 @@ VAppBar(color="light-blue-lighten-3").d-flex.align-center
     VImg(src="@/assets/comic.svg" :width="118" alt="動漫交易平台")
 VNavigationDrawer(v-if="isMobile" v-model="drawer" location="right" temporary)
   VList
-    VListItem(:prepend-avatar="user.avatar" :title="user.account" color="white")
+    VListItem(:prepend-avatar="user.avatar" :title="user.name" color="white")
   VDivider
   VList
     VListItem(v-for="navItem in navItems" :key="navItem.to" :to="navItem.to" :prepend-icon="navItem.icon")
       VListItemTitle {{ navItem.text }}
 VNavigationDrawer.bg-blue-lighten-1.text-white(expand-on-hover rail)
   VList.bg-blue-darken-1
-    VListItem(:prepend-avatar="user.avatar" :title="user.account" color="white")
+    VListItem(:prepend-avatar="user.avatar" :title="user.name" color="white")
   VDivider
   VList
     VListItem(v-for="navItem in navItems" :key="navItem.to" :to="navItem.to" :prepend-icon="navItem.icon")
@@ -39,6 +39,7 @@ const navItems = [
   { to: '/user/profile', text: '個人資料', icon: 'mdi-book-account' },
   { to: '/user/products', text: '我的商品', icon: 'mdi-store' },
   { to: '/user/orders', text: '我的訂單', icon: 'mdi-list-box' },
+  { to: '/user/liked', text: '我的收藏', icon: 'mdi-heart' },
   { to: '/', text: '回首頁', icon: 'mdi-home' }
 ]
 

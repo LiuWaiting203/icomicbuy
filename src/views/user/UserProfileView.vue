@@ -64,6 +64,9 @@ VContainer
                   v-if="editEmail"
                   )
               VDivider.text-black
+              VCardText.text-h6.text-blue 喜歡的商品數量：
+                span.text-grey-darken-2 {{ user.likes }}
+              VDivider.text-black
               VCardText.d-flex
                 VBtn.ms-auto(color="primary" @click="submit") 確認修改
 VDialog(v-model="editAvatar" width="500")

@@ -112,6 +112,16 @@ const routes = [
           login: true,
           admin: false
         }
+      },
+      {
+        path: 'liked',
+        name: 'UserLiked',
+        component: () => import(/* webpackChunkName: "user-Liked" */ '@/views/user/UserLikedView.vue'),
+        meta: {
+          title: '愛買漫 | 我的收藏',
+          login: true,
+          admin: false
+        }
       }
     ]
   },
