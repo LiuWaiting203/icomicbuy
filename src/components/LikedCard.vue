@@ -1,7 +1,7 @@
 <template lang="pug">
 VCard.d-flex.rounded-0
   VRow.w-100(no-gutters)
-    VCol.pa-0(cols="12" md="2")
+    VCol.pa-0(cols="6" md="2")
       VImg(:src="image" min-width="120" cover aspect-ratio="1")
     VCol(cols="12" md="10")
       .d-flex.flex-column.ms-5.my-2
