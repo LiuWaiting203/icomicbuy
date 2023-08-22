@@ -14,7 +14,7 @@ div.bg-grey-lighten-3.h-100
                 VRow.w-100
                   VCol(cols="2")
                     VImg(:src="item.product.image" cover min-width="120" width="150" aspect-ratio="1")
-                  VCol(cols="10")
+                  VCol(cols="12" md="10")
                     .d-flex.align-center
                       RouterLink.text-decoration-none(:to="'/products/' + item.product._id")
                         p.text-grey-darken-3.text-h5.font-weight-bold {{ item.product.name }}
