@@ -31,7 +31,7 @@ div.bg-grey-lighten-3.h-100
                     .my-2.d-flex.align-center
                       VIcon.me-2(icon="mdi-tag" color="pink" size="14")
                       span.text-subtitle-1.text-pink {{ item.product.price }} NTD
-                    .my-5.pa-5.bg-grey-lighten-4.w-50
+                    .my-5.pa-5.bg-grey-lighten-4.w-50.sm-hidden
                       pre.w-50.text-wrap.text-caption {{ item.product.description }}
                     VDivider.my-5
                     .d-flex.align-center.justify-end

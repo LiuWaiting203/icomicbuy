@@ -53,3 +53,11 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+.sm-hidden {
+  display: none;
+
+  @include sm {
+    display: block;
+  }
+}

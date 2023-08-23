@@ -42,7 +42,7 @@ body {
   height: 120px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 960px) {
   .login-panel {
     width: 420px;
     height: 485px;
@@ -51,7 +51,7 @@ body {
     height: 120px;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 1280px) {
   .login-panel {
     width: 420px;
     height: 485px;
@@ -85,7 +85,7 @@ body {
   max-height: 80px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 960px) {
   .register-panel {
     width: 420px;
     height: 700px;
@@ -94,7 +94,7 @@ body {
     height: 120px;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 1280px) {
   .register-panel {
     width: 420px;
     height: 700px;
@@ -138,8 +138,46 @@ body {
   word-wrap: break-word;
 }
 
-.v-table > .v-table__wrapper > table {
+.tableFix.v-table > .v-table__wrapper > table {
   table-layout: fixed;
+}
+
+.border-random-products {
+  border: 5px solid #CFD8DC;
+}
+
+.border-table-R {
+  border-right: 1px solid #aaa;
+}
+
+.border-table-B {
+  border-bottom: 1px solid #aaa;
+}
+
+.table-bg-color {
+  background-color: cornflowerblue;
+}
+
+.v-radio-group > .v-input__control > .v-label {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.tableDescFix .v-data-table {
+  white-space: pre;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.sm-hidden {
+  display: none;
+}
+@media (min-width: 600px) {
+  .sm-hidden {
+    display: block;
+  }
 }
 
 .data-table {
@@ -152,4 +190,48 @@ body {
 }
 .data-table .v-data-table__tbody .v-data-table__tr {
   background-color: #E1F5FE !important;
+}
+
+.banner-image {
+  width: 100vw;
+  height: 300px;
+  background-image: url("@/assets/about-us-cover-1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.product-intro {
+  width: 100vw;
+  background-color: #a4ddf0;
+  -webkit-box-shadow: inset 1px 1px 50px rgba(0, 0, 0, 0.5);
+          box-shadow: inset 1px 1px 50px rgba(0, 0, 0, 0.5);
+}
+
+.text-font-size {
+  font-size: 20px;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.hide-img {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .text-font-size {
+    font-size: 30px;
+  }
+  .hide-img {
+    display: block;
+  }
+}
+@media (min-width: 960px) {
+  .text-font-size {
+    font-size: 32px;
+  }
+  .hide-img {
+    display: block;
+  }
 }
