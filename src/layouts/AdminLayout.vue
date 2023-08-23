@@ -1,12 +1,12 @@
 <template lang="pug">
 VAppBar(color="light-blue-lighten-3")
-  VAppBarTitle.font-weight-black.text-h4 管理員後台系統
+  VAppBarTitle.font-weight-black.text-h4.text-white 管理員後台系統
   VSpacer
   VBtn.v-btn--active-no-bg(to="/" :active="false" :ripple="false" height="56" variant="text")
     VImg(src="@/assets/comic.svg" :width="118")
-VNavigationDrawer.elevation-4(permanent)
-  VList
-    VListItem(:prepend-avatar="user.avatar" :title="user.account")
+VNavigationDrawer.elevation-4.bg-blue-lighten-1.text-white(expand-on-hover rail)
+  VList.bg-blue-darken-1
+    VListItem(:prepend-avatar="user.avatar" :title="user.account" color="white")
   VDivider
   VList
     VListItem(v-for="navItem in navItems" :key="navItem.to" :to="navItem.to" :prepend-icon="navItem.icon")

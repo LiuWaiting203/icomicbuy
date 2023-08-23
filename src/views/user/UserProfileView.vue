@@ -1,7 +1,7 @@
 <template lang="pug">
 VContainer
-  VRow
-    VCol(cols="12")
+  VRow.justify-center
+    VCol(cols="12" md="8")
       VCard
         VCardTitle.bg-blue.text-h5.font-weight-bold.text-center 個人資料修改及管理
         VRow(no-gutters)

@@ -54,7 +54,7 @@ VContainer
     VCol(cols="12")
       h2.text-center.text-h6.font-weight-bold.mb-5.bg-blue.text-white.rounded-xl 你可能還喜歡以下這些商品...
     VCol(
-      cols="4" md="3"
+      cols="12" md="3"
       v-for="randomProduct in randomProducts" :key="randomProduct._id"
     )
       .d-flex.align-center.ms-10

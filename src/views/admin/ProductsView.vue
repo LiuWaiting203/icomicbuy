@@ -1,52 +1,49 @@
 <template lang="pug">
 VContainer
-  VRow
-    VCol(cols="12")
+  VRow.elevation-3
+    VCol.bg-indigo(cols="12")
       h1.text-center 商品管理
-      VDivider
-    VCol(cols="12")
-    //- VBtn(color="success" @click="openDialog") 管理商品
-    VDataTableServer(
-      v-model:items-per-page="tableItemPerPage"
-      v-model:sort-by="tableSortBy"
-      v-model:page="tablePage"
-      :items="tableProducts"
-      :headers="tableHeaders"
-      :loading="tableLoading"
-      :items-length="tableItemsLength"
-      hover
-      :search="tableSearch"
-      @update:items-per-page="tableLoadItems"
-      @update:sort-by="tableLoadItems"
-      @update:page="tableLoadItems"
-    )
-      template(#top)
-        VTextField(
-          variant="solo-filled"
-          placeholder="請輸入詳細資料"
-          prepend-inner-icon="mdi-magnify"
-          @click:prepend-inner="tableApplySearch"
-          v-model="tableSearch"
-          @keydown.enter="tableApplySearch"
-          clearable
+    VCol.bg-cyan-lighten-4(cols="12")
+      VDataTableServer(
+        v-model:items-per-page="tableItemPerPage"
+        v-model:sort-by="tableSortBy"
+        v-model:page="tablePage"
+        :items="tableProducts"
+        :headers="tableHeaders"
+        :loading="tableLoading"
+        :items-length="tableItemsLength"
+        hover
+        :search="tableSearch"
+        @update:items-per-page="tableLoadItems"
+        @update:sort-by="tableLoadItems"
+        @update:page="tableLoadItems"
+        class="data-table"
+      )
+        template(#top)
+          VTextField.w-50.ml-5(
+            variant="underlined"
+            placeholder="請輸入詳細資料"
+            prepend-inner-icon="mdi-magnify"
+            @click:prepend-inner="tableApplySearch"
+            v-model="tableSearch"
+            @keydown.enter="tableApplySearch"
+            clearable
+            )
+        template(#[`item.image`]="{ item }")
+          VImg.rounded.mx-auto(:src="item.raw.image" :min-width="150" :aspect-ratio="1" cover)
+        template(#[`item.sell`]="{ item }")
+          VSwitch(
+            color="success"
+            density="compact"
+            v-model="item.raw.sell"
+            @click="editSwitch(item.raw)"
+            )
+        template(#[`item.edit`]="{ item }")
+          VBtn(
+            variant="text"
+            icon="mdi-square-edit-outline"
+            @click="tableEditItem(item.raw)"
           )
-      template(#[`item.user`]="{ item }")
-        text {{ item.raw.user }}
-      template(#[`item.image`]="{ item }")
-        VImg(:src="item.raw.image" :min-width="150")
-      template(#[`item.sell`]="{ item }")
-        VSwitch(
-          color="success"
-          density="compact"
-          v-model="item.raw.sell"
-          @click="editSwitch(item.raw)"
-          )
-      template(#[`item.edit`]="{ item }")
-        VBtn(
-          variant="text"
-          icon="mdi-square-edit-outline"
-          @click="tableEditItem(item.raw)"
-        )
 VDialog(persistent scrollable width="500" v-model="dialog")
   VForm(:disabled="isSubmitting" @submit.prevent="submit")
     VCard
@@ -126,7 +123,6 @@ const tablePage = ref(1)
 const tableProducts = ref([])
 
 const tableHeaders = [
-  { title: '會員', align: 'center', sortable: false, key: 'users' },
   { title: '圖片', align: 'center', sortable: false, key: 'image' },
   { title: '名稱', align: 'center', sortable: true, key: 'name' },
   { title: '價格', align: 'center', sortable: true, key: 'price' },
