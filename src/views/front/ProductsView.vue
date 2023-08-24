@@ -29,21 +29,21 @@ VContainer(fluid)
 VDivider.ma-5
 VContainer
   VRow
-    VCol.bg-pink-accent-2.rounded-pill.pa-1.mb-5(cols="12")
+    VCol.bg-pink-accent-2.rounded-pill.pa-1(cols="12")
       .d-flex.align-center
         VIcon.ms-2(:start="true" icon="mdi-book-open-blank-variant" size="x-large" color="yellow")
         text.text-h6.font-weight-bold.ms-2 給喜歡動漫的你
-    VCol.px-5(
+    VCol.pa-15(
     cols="12" md="6" lg="3"
     v-for="product in products" :key="product._id"
     )
       ProductCard(v-bind="product")
-    VCol.bg-light-blue-accent-2.rounded-pill.pa-1.my-10(cols="12")
+    VCol.bg-light-blue-accent-2.rounded-pill.pa-1(cols="12")
       .d-flex.align-center
         VIcon.ms-2(color="pink" icon="mdi-package" size="x-large")
         p.text-h6.font-weight-bold.ms-2.text-white 更多更棒的商品推薦給你
   VRow
-    VCol.px-5(
+    VCol.pa-15(
       cols="12" md="6" lg="3"
       v-for="randomProduct in randomProducts" :key="randomProduct._id"
       )
